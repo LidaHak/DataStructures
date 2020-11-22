@@ -1,0 +1,102 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.previous = None
+        self.size = ''
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.size = ''
+        self.head = None
+        self.tail = None
+        
+    def isEmpty(self):
+        return self.size == 0
+
+    def __len__(self):
+        return self.size
+
+    def add_node(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = self.tail = new_node
+            self.head.previous = None
+            self.tail.next = None
+        else:
+            self.tail.next = new_node
+            new_node.previous = self.tail
+            self.tail = new_node
+            self.tail.next = None
+
+    def add_first(self, new_data):
+        new_node = Node(new_data)
+        new_node.next = self.head
+        if self.head is not None:
+            self.head.prev = new_node
+        self.head = new_node
+
+    def add_last(self, new_data):
+        new_node = Node(new_data)
+        new_node.previous = self.tail
+        if self.tail is not None:
+            self.tail.next = new_node
+        self.tail = new_node
+
+    def remove_first(self):
+        if self.head is None:
+            print('There is nothing to remove')
+            return
+        else:
+            removed = self.head.data
+            self.head = self.head.next
+            if self.head is None:
+                self.tail = None
+            else:
+                self.head.prev = None
+            return removed
+
+    def remove_last(self):
+        if self.tail is None:
+            print('There is nothing to remove')
+            return
+        else:
+            removed = self.tail.data
+            self.tail = self.tail.previous
+            if self.tail is None:
+                self.tail = None
+            else:
+                self.tail.next = None
+            return removed
+
+    def first_elem(self):
+        print('The first element is:  ')
+        print(self.head.data)
+
+    def last_elem(self):
+        print('The last element is:  ')
+        print(self.tail.data)
+
+    def display(self):
+        current = self.head
+        if self.isEmpty():
+            print("The list is empty")
+            return
+        print("Your Deque on Linked List: ")
+        while current is not None:
+            print(current.data)
+            current = current.next
+
+
+ddl = DoublyLinkedList()
+ddl.add_node(data=4)
+ddl.add_node(data=9)
+ddl.add_first(5)
+ddl.add_first(3)
+ddl.add_last(2)
+# ddl.removeFirst()
+# ddl.removeLast()
+ddl.first_elem()
+ddl.last_elem()
+ddl.display()
