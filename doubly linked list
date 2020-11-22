@@ -1,0 +1,65 @@
+class Node:
+    def __init__(self, data=None, prev=None, next=None, size = 0):
+        self.data = data
+        self.prev = prev
+        self.next = next
+        self.size = size
+
+    def __repr__(self):
+        return repr(self.data)
+
+
+class DoubleLinkedList(Node):
+    def __init__(self):
+        super().__init__()
+        self.data = None
+        self.next = None
+        self.head = None
+
+    def __repr__(self):
+        nodes = []
+        curr = self.head
+        while curr:
+            nodes.append(repr(curr))
+            curr = curr.next
+        return str(nodes)
+
+    def add_to_head(self, data, temp_node):
+        new_head = temp_node(data=data, next=self.head)
+        if self.head:
+            self.head.prev = new_head
+        self.head = new_head
+
+    def add_to_end(self, data, temp_node):
+        if not self.head:
+            self.head = temp_node(data=data)
+            return
+        curr = self.head
+        while curr.next:
+            curr = curr.next
+        curr.next = temp_node(data=data, prev=curr)
+
+    def remove_from_head(self, node):
+        if node.prev:
+            node.prev.next = node.next
+        if node.next:
+            node.next.prev = node.prev
+        if node is self.head:
+            self.head = node.next
+        node.prev = None
+        node.next = None
+
+    def remove_from_end(self, temp_node):
+        value = self.head
+        while value.next:
+            value = value.next
+        value.prev.next = None
+        if self.next is None:
+            temp_node.head = None
+            temp_node.prev = self.data
+
+    def get_head(self):
+        return self.head
+
+    def get_end(self):
+        return self.data[self.size - 1]
