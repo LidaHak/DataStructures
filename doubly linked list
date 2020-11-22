@@ -63,3 +63,16 @@ class DoubleLinkedList(Node):
 
     def get_end(self):
         return self.data[self.size - 1]
+
+
+ddl = DoublyLinkedList()
+ddl.addNode(data=4)
+ddl.addNode(data=9)
+ddl.addFirst(5)
+ddl.addFirst(3)
+ddl.addLast(2)
+#ddl.removeFirst()
+#ddl.removeLast()
+ddl.first()
+ddl.last()
+ddl.display()
