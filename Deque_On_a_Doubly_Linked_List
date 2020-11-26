@@ -11,7 +11,7 @@ class DoublyLinkedList:
         self.size = ''
         self.head = None
         self.tail = None
-        
+
     def isEmpty(self):
         return self.size == 0
 
@@ -83,9 +83,9 @@ class DoublyLinkedList:
         if self.isEmpty():
             print("The list is empty")
             return
-        print("Your Deque on Linked List: ")
+        print("The Deque on Linked List: ")
         while current is not None:
-            print(current.data)
+            print(current.data, end=" -> ")
             current = current.next
 
 
@@ -95,7 +95,7 @@ ddl.add_node(data=9)
 ddl.add_first(5)
 ddl.add_first(3)
 ddl.add_last(2)
-# ddl.removeFirst()
+ddl.remove_first()
 # ddl.removeLast()
 ddl.first_elem()
 ddl.last_elem()
